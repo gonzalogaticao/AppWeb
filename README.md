@@ -42,7 +42,7 @@ Aplicacion web para servir de repositorio de tesis.
       pip list
 
 - Crear primer `Hola Mundo`, con el siguiente codigo:
-- 
+ 
 ![imagen](https://user-images.githubusercontent.com/115717996/206081733-05dd57bd-75db-47a1-b2da-b65fd440f6cf.png)
 
 - Ejecutar programa con el comado `python .\carpeta\archivo.py`. En este caso:
