@@ -29,8 +29,8 @@ Aplicacion web repositorio de tesis.
 
 - En caso de error "la ejecución de scripts está deshabilitada en este sistema".
 1. Ingresar al powershell como administrador.
-2. Ejecutar comando `Set-ExecutionPolicy Unrestricted`.
-3. Aceptar, ingresando `S`.
+2. Ejecutar comando `Set-ExecutionPolicy Unrestricted.`
+3. Aceptar ingresando `S.`
 
 - Deberia visualizarse 'env' ante la ruta, de la siguiente manera: `(env) PS C:\Users\...`
 - Instalar Flask en el proyecto:
