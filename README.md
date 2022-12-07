@@ -48,3 +48,7 @@ Aplicacion web repositorio de tesis.
 - Como resultado nos entrega informacion y una URL, que por lo general corresponde a `http://127.0.0.1:5000`
 - Ingresa al URL desde cualquier navegador y se podra visualizar la pagina.
 - Para cerrar el servidor se debe ingresar `ctrl+c` en el terminal.
+
+- Licensia
+
+        MIT License
