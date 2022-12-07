@@ -1,7 +1,7 @@
 # AppWeb 
 
 ## Descripción
-Aplicacion web repositorio de tesis.
+Aplicacion web para servir de repositorio de tesis.
 
 ## Estado el proyecto
     En proceso - Activo
