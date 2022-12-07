@@ -6,7 +6,7 @@ Aplicacion web para servir de repositorio de tesis.
 ## Estado el proyecto
     En proceso - Activo
 
-## Instalación
+## Instalación desde 0
 
 ### Python
 - Descargar Python `version 3.11` desde la [pagina oficial](https://www.python.org/).
