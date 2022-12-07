@@ -14,11 +14,12 @@ Aplicacion web repositorio de tesis.
 
 ### Flask
 
-- Instalar virtualenv en python:
+- Instalar la biblioteca virtual envirtual en python:
 
       pip install virtualenv
 
-- Bajar el entorno virtual en la carpeta del proyecto:
+- Bajar el entorno virtual dentro de la carpeta del proyecto. 
+- En este caso nombramos al entorno como `env` y se creara una carpeta correspondiente.
 
       virtualenv -p python3 env
 
@@ -31,6 +32,7 @@ Aplicacion web repositorio de tesis.
 2. Ejecutar comando `Set-ExecutionPolicy Unrestricted`.
 3. Aceptar, ingresando `S`.
 
+- Deberia visualizarse 'env' ante la ruta, de la siguiente manera: `(env) PS C:\Users\...`
 - Instalar Flask en el proyecto:
 
       pip install flask
@@ -45,4 +47,4 @@ Aplicacion web repositorio de tesis.
 
 - Como resultado nos entrega informacion y una URL, que por lo general corresponde a `http://127.0.0.1:5000`
 - Ingresa al URL desde cualquier navegador y se podra visualizar la pagina.
-- Para cerrar el servidor se debe ingresar 'ctrl+c' en el terminal.
+- Para cerrar el servidor se debe ingresar `ctrl+c` en el terminal.
