@@ -4,7 +4,7 @@ from flask import render_template
 app = Flask(__name__)  #Inicializa aplicacion.
 @app.route('/')
 def hello_world():
-    #bienvenida = "Bienvenido a el repositorio,"
+    #bienvenida = "Hola Mundo!"
     #return bienvenida
     return render_template('index.html')
 
