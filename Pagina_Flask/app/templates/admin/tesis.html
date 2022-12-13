@@ -1,0 +1,90 @@
+{% include 'admin/header.html' %}
+
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="card">
+                <div class="card-header">
+                    Tesis
+                </div>
+                <div class="card-body">
+
+                    <form action="/admin/tesis/save" method="post">
+
+                    <div class="form-group">
+                      <label for="">Titulo</label>  
+                      <input type="txtTitulo" class="form-control" name="txtTitulo" id="txtTitulo" placeholder="Ingrese titulo">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Autor 1</label>  
+                      <input type="txtAutor" class="form-control" name="txtAutor" id="txtAutor" placeholder="Autor">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Autor 2</label>  
+                      <input type="txtAutor" class="form-control" name="txtAutor" id="txtAutor" placeholder="Autor">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Profesor Guia</label>  
+                      <input type="txtProfesor" class="form-control" name="txtProfesor" id="txtProfesor" placeholder="Profesor Guia">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Año</label>  
+                      <input type="txtAnio" class="form-control" name="txtAnio" id="txtAnio"  placeholder="Año de publicacion">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">URL de la tesis</label>  
+                      <input type="fileURL" class="form-control" name="fileURL" id="fileURL"  placeholder="URL de la tesis">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+
+                </form>
+
+                </div>
+                <div class="card-footer text-muted">
+                </div>
+            </div>            
+            
+        </div>
+        <div class="col-md-8">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>TITULO</th>
+                        <th>AUTOR 1</th>
+                        <th>AUTOR 2</th>
+                        <th>PROFESOR GUIA</th>
+                        <th>AÑO</th>
+                        <th>URL</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>tesis</td>
+                        <td>unapino uno</td>
+                        <td>unapino dos</td>
+                        <td>Esteban</td>
+                        <td>2222</td>
+                        <td> https://www.unap.cl/prontus_unap/site/docs/20140812/20140812183858/tesis.pdf </td>
+                        <td>ELIMINAR</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>
+
+{% include 'admin/foot.html' %}
