@@ -11,36 +11,36 @@
                 </div>
                 <div class="card-body">
 
-                    <form action="/admin/tesis/save" method="post">
+                    <form action="/admin/tesis/save" method="post" enctype="multipart/form-data">
 
                     <div class="form-group">
-                      <label for="">Titulo</label>  
-                      <input type="txtTitulo" class="form-control" name="txtTitulo" id="txtTitulo" placeholder="Ingrese titulo">
+                      <label for="txtTitulo">Titulo</label>  
+                      <input type="txt" class="form-control" name="txtTitulo" id="txtTitulo" placeholder="Ingrese titulo">
                     </div>
 
                     <div class="form-group">
-                      <label for="">Autor 1</label>  
-                      <input type="txtAutor" class="form-control" name="txtAutor" id="txtAutor" placeholder="Autor">
+                      <label for="txtAutor1">Autor 1</label>  
+                      <input type="txt" class="form-control" name="txtAutor1" id="txtAutor1" placeholder="Autor">
                     </div>
 
                     <div class="form-group">
-                      <label for="">Autor 2</label>  
-                      <input type="txtAutor" class="form-control" name="txtAutor" id="txtAutor" placeholder="Autor">
+                      <label for="txtAutor2">Autor 2</label>  
+                      <input type="txt" class="form-control" name="txtAutor2" id="txtAutor2" placeholder="Autor">
                     </div>
 
                     <div class="form-group">
-                      <label for="">Profesor Guia</label>  
-                      <input type="txtProfesor" class="form-control" name="txtProfesor" id="txtProfesor" placeholder="Profesor Guia">
+                      <label for="txtProfesor">Profesor Guia</label>  
+                      <input type="txt" class="form-control" name="txtProfesor" id="txtProfesor" placeholder="Profesor Guia">
                     </div>
 
                     <div class="form-group">
-                      <label for="">Año</label>  
-                      <input type="txtAnio" class="form-control" name="txtAnio" id="txtAnio"  placeholder="Año de publicacion">
+                      <label for="txtAnio">Año</label>  
+                      <input type="txt" class="form-control" name="txtAnio" id="txtAnio"  placeholder="Año de publicacion">
                     </div>
 
                     <div class="form-group">
-                      <label for="">URL de la tesis</label>  
-                      <input type="fileURL" class="form-control" name="fileURL" id="fileURL"  placeholder="URL de la tesis">
+                      <label for="pdfTesis">URL de la tesis</label>  
+                      <input type="file" class="form-control" name="pdfTesis" id="pdfTesis"  placeholder="URL de la tesis">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Agregar</button>

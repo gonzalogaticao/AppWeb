@@ -29,8 +29,22 @@ def adminTesis():
     return render_template('admin/tesis.html')
 
 @app.route('/admin/tesis/save', methods=['POST'])
-def atesisSave():
-    print(request.form['txtTitulo'])
+def tesisSave():
+
+    _tesis=request.form['txtTitulo']
+    _autor1=request.form['txtAutor1']
+    _autor2=request.form['txtAutor2']
+    _profesor=request.form['txtProfesor']
+    _anio=request.form['txtAnio']
+    _pdf=request.files['pdfTesis']
+
+    print(_tesis)
+    print(_autor1)
+    print(_autor2)
+    print(_profesor)
+    print(_anio)
+    print(_pdf)
+
     return redirect('admin/tesis')
 
 if __name__ == '__main__':  #Comprobar que estemos situados en el archivo principal.
