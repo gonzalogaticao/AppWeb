@@ -3,7 +3,7 @@
 /*==============================================================*/
 create table MODERADORES 
 (
-   ID_M                 integer                        not null,
+   ID_M                 integer                        not null   AUTO_INCREMENT,
    NOMBRE_M             varchar(50)                    null,
    CORREO_M             varchar(50)                    null,
    CONTRASENA_M         varchar(50)                    null,
@@ -22,7 +22,7 @@ ID_M ASC
 /*==============================================================*/
 create table TESIS 
 (
-   ID_T                 integer                        not null,
+   ID_T                 integer                        not null   AUTO_INCREMENT,
    ID_M                 integer                        not null,
    ID_U                 integer                        not null,
    TITULO_T             char(50)                       null,
@@ -59,7 +59,7 @@ ID_U ASC
 /*==============================================================*/
 create table USUARIOS 
 (
-   ID_U                 integer                        not null,
+   ID_U                 integer                        not null   AUTO_INCREMENT,
    CORREO_U             varchar(50)                    null,
    CONTRASENA_U         varchar(50)                    null,
    constraint PK_USUARIOS primary key (ID_U)

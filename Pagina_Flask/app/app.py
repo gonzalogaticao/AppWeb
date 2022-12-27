@@ -3,6 +3,7 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flaskext.mysql import MySQL
+from datetime import datetime
 
 app = Flask(__name__)  #Inicializa aplicacion.
 mysql = MySQL()
@@ -40,33 +41,49 @@ def login():
 def adminTesis():
 
     conexion = mysql.connect()
-    print(conexion)
+    cursor = conexion.cursor()
+    cursor.execute("SELECT * FROM `tesis`")
+    tesis=cursor.fetchall()
+    conexion.commit()
 
-    return render_template('admin/tesis.html')
+    return render_template('admin/tesis.html', tesis=tesis)
 
 @app.route('/admin/tesis/save', methods=['POST'])
 def tesisSave():
 
     _tesis=request.form['txtTitulo']
-    _autor1=request.form['txtAutor1']
-    _autor2=request.form['txtAutor2']
+    _autor=request.form['txtAutor']
     _profesor=request.form['txtProfesor']
     _anio=request.form['txtAnio']
     _pdf=request.files['pdfTesis']
 
-    sql="INSERT INTO `tesis` (`ID`, `NOMBRES`, `AUTOR1`, `AUTOR2`, `PROFESOR`, `ANIO`, `PDF`) VALUES (NULL, %s, %s, %s, %s, %s, %s);"
-    datos=(_tesis,_autor1,_autor2,_profesor,_anio,_pdf.filename)
+    tiempo = datetime.now()
+    horaActual=tiempo.strftime('%Y%H%M%S')
+
+    if _pdf.filename!="":
+        nuevoNombre = horaActual+"_"+_pdf.filename
+        _pdf.save("templates/site/pdf/"+ nuevoNombre)
+
+    sql="INSERT INTO `tesis` (`ID_T`, `ID_M`, `ID_U`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`) VALUES (NULL, 1, 1, %s, %s, %s, %s, %s);"
+    datos=(_tesis,_autor,_profesor,_anio,nuevoNombre)
     conexion = mysql.connect()      #Conexion.
     cursor=conexion.cursor()        #Se genera un cursor.
     cursor.execute(sql,datos)       #Cursor ejecuta el comando sql.
     conexion.commit()               #Se lleva a cabo.
 
-    #print(_tesis)
-    #print(_autor1)
-    #print(_autor2)
-    #print(_profesor)
-    #print(_anio)
-    #print(_pdf)
+    return redirect('/admin/tesis')
+
+@app.route('/admin/tesis/delete', methods=['POST'])
+def tesisDelete():
+    _id=request.form['txtID']
+    print(_id)
+
+    conexion = mysql.connect()
+    cursor = conexion.cursor()
+    cursor.execute("DELETE FROM `tesis` WHERE ID_T=%s", _id)
+    tesis=cursor.fetchall()
+    conexion.commit()
+    print(tesis)
 
     return redirect('/admin/tesis')
 

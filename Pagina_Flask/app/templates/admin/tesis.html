@@ -19,13 +19,8 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="txtAutor1">Autor 1</label>  
-                      <input type="txt" class="form-control" name="txtAutor1" id="txtAutor1" placeholder="Autor">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="txtAutor2">Autor 2</label>  
-                      <input type="txt" class="form-control" name="txtAutor2" id="txtAutor2" placeholder="Autor">
+                      <label for="txtAutor">Autor</label>  
+                      <input type="txt" class="form-control" name="txtAutor" id="txtAutor" placeholder="Autor">
                     </div>
 
                     <div class="form-group">
@@ -39,8 +34,8 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="pdfTesis">URL de la tesis</label>  
-                      <input type="file" class="form-control" name="pdfTesis" id="pdfTesis"  placeholder="URL de la tesis">
+                      <label for="pdfTesis">Archivo de la tesis</label>  
+                      <input type="file" class="form-control" name="pdfTesis" id="pdfTesis"  placeholder="Archivo de la tesis">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Agregar</button>
@@ -60,8 +55,7 @@
                     <tr>
                         <th>ID</th>
                         <th>TITULO</th>
-                        <th>AUTOR 1</th>
-                        <th>AUTOR 2</th>
+                        <th>AUTOR</th>
                         <th>PROFESOR GUIA</th>
                         <th>AÑO</th>
                         <th>URL</th>
@@ -70,16 +64,23 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>tesis</td>
-                        <td>unapino uno</td>
-                        <td>unapino dos</td>
-                        <td>Esteban</td>
-                        <td>2222</td>
-                        <td> https://www.unap.cl/prontus_unap/site/docs/20140812/20140812183858/tesis.pdf </td>
-                        <td>ELIMINAR</td>
-                    </tr>
+                      {% for tesis in tesis %}
+                        <td>{{ tesis[0] }}</td>
+                        <td>{{ tesis[3] }}</td>
+                        <td>{{ tesis[4] }}</td>
+                        <td>{{ tesis[5] }}</td>
+                        <td>{{ tesis[6] }}</td>
+                        <td>{{ tesis[7] }}</td>
+                        <td>
 
+                          <form action="/admin/tesis/delete" method="post">
+                          <input value="{{ tesis[0] }}" type="text" name="txtID" id="txtID">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                          </form>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
             
