@@ -5,6 +5,9 @@ from flask import redirect
 from flaskext.mysql import MySQL
 from datetime import datetime
 
+from werkzeug.utils import secure_filename
+import os
+
 app = Flask(__name__)  #Inicializa aplicacion.
 mysql = MySQL()
 app.config['MYSQL_DATABASE_HOST'] = "localhost"
@@ -48,7 +51,7 @@ def adminTesis():
 
     return render_template('admin/tesis.html', tesis=tesis)
 
-@app.route('/admin/tesis/save', methods=['POST'])
+@app.route('/admin/tesis/save', methods=['GET','POST'])
 def tesisSave():
 
     _tesis=request.form['txtTitulo']
@@ -62,7 +65,8 @@ def tesisSave():
 
     if _pdf.filename!="":
         nuevoNombre = horaActual+"_"+_pdf.filename
-        _pdf.save("templates/site/pdf/"+ nuevoNombre)
+        _pdf.save("Pagina_Flask/app/templates/files/"+nuevoNombre)
+
 
     sql="INSERT INTO `tesis` (`ID_T`, `ID_M`, `ID_U`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`) VALUES (NULL, 1, 1, %s, %s, %s, %s, %s);"
     datos=(_tesis,_autor,_profesor,_anio,nuevoNombre)
