@@ -7,6 +7,8 @@ from werkzeug.utils import secure_filename
 import os
 
 app = Flask(__name__)  #Inicializa aplicacion.
+app.secret_key="secretkey"
+
 mysql = MySQL()
 app.config['MYSQL_DATABASE_HOST'] = "localhost"
 app.config['MYSQL_DATABASE_USER'] = "root"
@@ -37,6 +39,10 @@ def tesis():
 
 @app.route('/admin')
 def admin():
+
+    if not 'login' in session:
+        return render_template('/admin/login.html')
+
     return render_template('admin/index.html')
 
 @app.route('/admin/login')
@@ -50,10 +56,24 @@ def admin_login():
         _password=request.form['txtPassword']
         print(_usuario)
         print(_password)
+
+        if _usuario=="admin" and _password=="1234":
+            session["login"]=True
+            session["usuario"]="Toad"
+            return redirect("/admin")
+
+    return render_template('/admin/login.html')
+
+@app.route('/admin/cerrar')
+def cerrar_session():
+    session.clear()
     return render_template('/admin/login.html')
 
 @app.route('/admin/tesis')
 def adminTesis():
+
+    if not 'login' in session:
+        return render_template('/admin/login.html')
 
     conexion = mysql.connect()
     cursor = conexion.cursor()
