@@ -21,9 +21,19 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
+
             </div>
             <div class="col-md-4">
                 <br>
+                {% if mensaje %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>{{mensaje}}</strong>
+                </div>
+                {% endif %}
+
+                
+
+                
                 <div class="card">
                     <div class="card-header">
                         Iniciar Sesión
@@ -39,7 +49,7 @@
 
                             <div class="mb-3">
                                 <label for="txtPassword" class="form-label">Contraseña:</label>
-                                <input type="text" class="form-control" name="txtPassword" id="txtPassword" aria-describedby="helpId" placeholder="Ingrese Contraseña">
+                                <input type="password" class="form-control" name="txtPassword" id="txtPassword" aria-describedby="helpId" placeholder="Ingrese Contraseña">
                             </div>
 
                             <button type="submit" class="btn btn-primary">Ingresar</button>

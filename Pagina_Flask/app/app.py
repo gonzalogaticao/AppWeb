@@ -21,6 +21,11 @@ mysql.init_app(app)
 def index():
     return render_template('site/index.html')
 
+@app.route('/css/<archivocss>')
+def css(archivocss):
+    return send_from_directory(os.path.join('templates\site\css'),archivocss)
+
+
 @app.route('/files/<pdf>')
 def pdf(pdf):
     print(pdf)
@@ -62,7 +67,7 @@ def admin_login():
             session["usuario"]="Toad"
             return redirect("/admin")
 
-    return render_template('/admin/login.html')
+    return render_template('/admin/login.html', mensaje="Error: credenciales no coinciden")
 
 @app.route('/admin/cerrar')
 def cerrar_session():
@@ -85,6 +90,9 @@ def adminTesis():
 
 @app.route('/admin/tesis/save', methods=['GET','POST'])
 def tesisSave():
+
+    if not 'login' in session:
+        return render_template('/admin/login.html')
 
     _tesis=request.form['txtTitulo']
     _autor=request.form['txtAutor']
@@ -112,6 +120,9 @@ def tesisSave():
 
 @app.route('/admin/tesis/delete', methods=['POST'])
 def tesisDelete():
+
+    if not 'login' in session:
+        return render_template('/admin/login.html')
 
     _id=request.form['txtID']
 
