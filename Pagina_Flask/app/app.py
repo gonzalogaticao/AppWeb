@@ -80,15 +80,14 @@ def tesisSave():
 
 @app.route('/admin/tesis/delete', methods=['POST'])
 def tesisDelete():
+
     _id=request.form['txtID']
-    print(_id)
 
     conexion = mysql.connect()
     cursor = conexion.cursor()
     cursor.execute("DELETE FROM `tesis` WHERE ID_T=%s", _id)
     tesis=cursor.fetchall()
     conexion.commit()
-    print(tesis)
 
     return redirect('/admin/tesis')
 
