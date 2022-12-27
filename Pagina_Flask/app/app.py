@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask import redirect
+from flask import send_from_directory
 from flaskext.mysql import MySQL
 from datetime import datetime
 
@@ -20,6 +21,12 @@ mysql.init_app(app)
 @app.route('/')
 def index():
     return render_template('site/index.html')
+
+@app.route('/files/<pdf>')
+def pdf(pdf):
+    print(pdf)
+    print(os.path.join('Pagina_Flask/app/templates/files/'),pdf)
+    return send_from_directory(os.path.join('templates/files'),pdf)
 
 @app.route('/tesis')
 def tesis():
@@ -82,6 +89,15 @@ def tesisSave():
 def tesisDelete():
 
     _id=request.form['txtID']
+
+    conexion = mysql.connect()
+    cursor = conexion.cursor()
+    cursor.execute("SELECT archivo_t FROM `tesis` WHERE ID_T=%s", _id)
+    tesis=cursor.fetchall()
+    conexion.commit()
+
+    if os.path.exists("Pagina_Flask/app/templates/files/"+str(tesis[0][0])):
+        os.remove("Pagina_Flask/app/templates/files/"+str(tesis[0][0]))
 
     conexion = mysql.connect()
     cursor = conexion.cursor()
