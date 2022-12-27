@@ -1,8 +1,5 @@
 from flask import Flask
-from flask import render_template
-from flask import request
-from flask import redirect
-from flask import send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory
 from flaskext.mysql import MySQL
 from datetime import datetime
 
@@ -31,13 +28,12 @@ def pdf(pdf):
 @app.route('/tesis')
 def tesis():
     conexion = mysql.connect()
-    print(conexion)
+    cursor = conexion.cursor()
+    cursor.execute("SELECT * FROM `tesis`")
+    tesis=cursor.fetchall()
+    conexion.commit()
 
-    return render_template('site/tesis.html')
-
-@app.route('/envio')
-def envio():
-    return render_template('site/envio.html')
+    return render_template('site/tesis.html', tesis=tesis)
 
 @app.route('/admin')
 def admin():
@@ -46,6 +42,15 @@ def admin():
 @app.route('/admin/login')
 def login():
     return render_template('admin/login.html')
+
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        _usuario=request.form['txtUsername']
+        _password=request.form['txtPassword']
+        print(_usuario)
+        print(_password)
+    return render_template('/admin/login.html')
 
 @app.route('/admin/tesis')
 def adminTesis():
