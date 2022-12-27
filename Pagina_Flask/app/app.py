@@ -65,7 +65,8 @@ def tesisSave():
 
     if _pdf.filename!="":
         nuevoNombre = horaActual+"_"+_pdf.filename
-        _pdf.save("Pagina_Flask/app/templates/files/"+nuevoNombre)
+        filesPath = "Pagina_Flask/app/templates/files/"
+        _pdf.save(filesPath+nuevoNombre)
 
 
     sql="INSERT INTO `tesis` (`ID_T`, `ID_M`, `ID_U`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`) VALUES (NULL, 1, 1, %s, %s, %s, %s, %s);"
