@@ -25,7 +25,6 @@ def index():
 def css(archivocss):
     return send_from_directory(os.path.join('templates\site\css'),archivocss)
 
-
 @app.route('/files/<pdf>')
 def pdf(pdf):
     print(pdf)

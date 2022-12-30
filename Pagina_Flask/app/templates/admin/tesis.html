@@ -2,12 +2,12 @@
 
 <div class="container">
     <br>
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row-md-4">
+        <div class="col-md-5">
 
-            <div class="card border-primary mb-3">
+            <div class="card border-primary mb-4">
                 <div class="card-header">
-                    Tesis
+                  Tesis
                 </div>
                 <div class="card-body">
 
@@ -51,10 +51,9 @@
 
         <div class="col-md">
 
-            <table class="table table-bordered">
+            <table class="table table-primary">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>TITULO</th>
                         <th>AUTOR</th>
                         <th>PROFESOR GUIA</th>
@@ -66,7 +65,6 @@
                 <tbody>
                     <tr>
                       {% for tesis in tesis %}
-                        <td>{{ tesis[0] }}</td>
                         <td>{{ tesis[3] }}</td>
                         <td>{{ tesis[4] }}</td>
                         <td>{{ tesis[5] }}</td>
