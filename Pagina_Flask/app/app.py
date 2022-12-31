@@ -148,7 +148,6 @@ def tesisSave():
 
     _username=session.get('usuario')
     print("USERNAME:"+_username)
-    results = []
 
     conexion = mysql.connect()
     cursor = conexion.cursor()
