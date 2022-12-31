@@ -53,7 +53,7 @@ def admin_register_save():
     _email=request.form['txtEmail']
 
     sql="INSERT INTO `moderadores` (`ID_M`, `NOMBRE_M`, `CORREO_M`, `CONTRASENA_M`) VALUES (NULL,%s,%s,%s);"
-    datos=(_usuario,_password,_email)
+    datos=(_usuario,_email,_password)
     conexion = mysql.connect()      #Conexion.
     cursor=conexion.cursor()        #Se genera un cursor.
     cursor.execute(sql,datos)       #Cursor ejecuta el comando sql.
@@ -78,15 +78,25 @@ def admin_login():
     if request.method == 'POST':
         _usuario=request.form['txtUsername']
         _password=request.form['txtPassword']
-        print(_usuario)
-        print(_password)
 
-        if _usuario=="admin" and _password=="1234":
+        conexion = mysql.connect()
+        cursor = conexion.cursor()
+        cursor.execute("SELECT * FROM `moderadores` WHERE NOMBRE_M=%s AND CONTRASENA_M=%s",(_usuario,_password))
+        admin=cursor.fetchone()
+
+        if admin:
+            print("ES ADMIN")
             session["login"]=True
-            session["usuario"]="Toad"
+            session["usuario"]=_usuario
             return redirect("/admin")
 
-    return render_template('/admin/login.html', mensaje="Error: credenciales no coinciden")
+            return redirect("/admin")
+        else:
+            print("NO ES ADMIN")
+            error = 'Invalid username or password'
+            return render_template('login.html', error=error)
+
+    return render_template('/admin/login.html', admin=admin, mensaje="Error: credenciales no coinciden")
 
 @app.route('/admin/cerrar')
 def cerrar_session():
