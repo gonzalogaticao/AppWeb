@@ -41,6 +41,26 @@ def tesis():
 
     return render_template('site/tesis.html', tesis=tesis)
 
+@app.route('/admin/register')
+def register():
+    return render_template('admin/register.html')
+
+@app.route('/admin/register/save',methods=['POST'])
+def admin_register_save():
+
+    _usuario=request.form['txtNombre']
+    _password=request.form['txtPassword']
+    _email=request.form['txtEmail']
+
+    sql="INSERT INTO `moderadores` (`ID_M`, `NOMBRE_M`, `CORREO_M`, `CONTRASENA_M`) VALUES (NULL,%s,%s,%s);"
+    datos=(_usuario,_password,_email)
+    conexion = mysql.connect()      #Conexion.
+    cursor=conexion.cursor()        #Se genera un cursor.
+    cursor.execute(sql,datos)       #Cursor ejecuta el comando sql.
+    conexion.commit()               #Se lleva a cabo.
+
+    return redirect('/admin/login')
+
 @app.route('/admin')
 def admin():
 
