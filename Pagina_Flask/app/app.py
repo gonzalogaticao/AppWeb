@@ -51,7 +51,6 @@ def search():
   cursor = conexion.cursor()
   cursor.execute("SELECT * FROM `tesis` WHERE `TITULO_T` LIKE %s" ,('%' + query + '%'))
   results = cursor.fetchall()         
-  
   cursor.close()
   conexion.close()
   
@@ -101,7 +100,6 @@ def admin_login():
         admin=cursor.fetchone()
 
         if admin:
-            print("ES ADMIN")
             session["login"]=True
             session["usuario"]=_usuario
             return redirect("/admin")
@@ -148,8 +146,25 @@ def tesisSave():
         _pdf.save(filesPath+nuevoNombre)
 
 
-    sql="INSERT INTO `tesis` (`ID_T`, `ID_M`, `ID_U`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`) VALUES (NULL, 1, 1, %s, %s, %s, %s, %s);"
-    datos=(_tesis,_autor,_profesor,_anio,nuevoNombre)
+    _username=session.get('usuario')
+    print("USERNAME:"+_username)
+    results = []
+
+    conexion = mysql.connect()
+    cursor = conexion.cursor()
+    cursor.execute("SELECT `ID_M` FROM `moderadores` WHERE `NOMBRE_M` = %s",(_username))
+    result = cursor.fetchone()
+    if result:
+        id = result[0]
+    else:
+        id = None
+    print("ID: ",id)
+    cursor.close()
+    conexion.close()
+
+
+    sql="INSERT INTO `tesis` (`ID_T`, `ID_M`, `ID_U`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`) VALUES (NULL, %s, 1, %s, %s, %s, %s, %s);"
+    datos=(id,_tesis,_autor,_profesor,_anio,nuevoNombre)
     conexion = mysql.connect()      #Conexion.
     cursor=conexion.cursor()        #Se genera un cursor.
     cursor.execute(sql,datos)       #Cursor ejecuta el comando sql.
