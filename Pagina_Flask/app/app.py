@@ -41,6 +41,22 @@ def tesis():
 
     return render_template('site/tesis.html', tesis=tesis)
 
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+
+  query = request.args.get('word')
+  results = []
+  
+  conexion = mysql.connect()
+  cursor = conexion.cursor()
+  cursor.execute("SELECT * FROM `tesis` WHERE `TITULO_T` LIKE %s",('%' + query + '%'))
+  results = cursor.fetchall()         
+  
+  cursor.close()
+  conexion.close()
+  
+  return render_template('site/search.html', query=query, results=results)
+
 @app.route('/admin/register')
 def register():
     return render_template('admin/register.html')

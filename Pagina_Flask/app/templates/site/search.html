@@ -1,35 +1,32 @@
 {% include 'site/header.html' %}
 
-<form method="get" action="/search" >
-    <input type="text" name="word" id="word" placeholder="Search...">
-    <button type="submit">Search</button>
-</form>
-
     <div class="container">
 
         <div class="row">
+            
+            {% if results %}
 
-            {% for tesis in tesis %}
+            {% for result in results %}
             <div class="col-md-4">
                 ___________________________________________________
                 <div class="card">
+
                     <img class="card-img-top" src="https://indunor.cl/assets/img/logosues/logo_unap.png" width=10px height=350px alt="">
                     <div class="card-body">
-                        <h2 class="card-title">{{tesis[3]}}</h2>
-                        <h4 class="card-title">AUTORES: {{tesis[4]}}</h4>
+                        <h2 class="card-title">{{result[3]}}</h2>
+                        <h4 class="card-title">AUTORES: {{result[4]}}</h4>
                         <!--img class="card-img-top" src="https://www.researchgate.net/profile/Maria-Monreal/publication/315108532/figure/fig1/AS:472492935520261@1489662502634/Figura-2-Avatar-que-aparece-por-defecto-en-Facebook_Q640.jpg" alt=""--->
-                        <h4 class="card-title">PROFESOR GUIA: {{tesis[5]}}</h4>
+                        <h4 class="card-title">PROFESOR GUIA: {{result[5]}}</h4>
                         <!--img class="card-img-top" src="https://www.researchgate.net/profile/Maria-Monreal/publication/315108532/figure/fig1/AS:472492935520261@1489662502634/Figura-2-Avatar-que-aparece-por-defecto-en-Facebook_Q640.jpg" alt=""--->
-                        <h4 class="card-title">PUBLICACIÓN: {{tesis[6]}}</h4>
-                        <a name="" id="" class="btn btn-primary" href="/files/{{ tesis[7] }}" role="button">Visualizar</a>
+                        <h4 class="card-title">PUBLICACIÓN: {{result[6]}}</h4>
+                        <a name="" id="" class="btn btn-primary" href="/files/{{ result[7] }}" role="button">Visualizar</a>
                         <h1><br></h1>
                     </div>
                 </div>
-
             </div>
-            
             {% endfor %}
 
+            {% endif %}
         </div> 
 
     </div>
