@@ -49,7 +49,7 @@ def search():
   
   conexion = mysql.connect()
   cursor = conexion.cursor()
-  cursor.execute("SELECT * FROM `tesis` WHERE `TITULO_T` LIKE %s",('%' + query + '%'))
+  cursor.execute("SELECT * FROM `tesis` WHERE `TITULO_T` LIKE %s" ,('%' + query + '%'))
   results = cursor.fetchall()         
   
   cursor.close()
