@@ -90,12 +90,6 @@ def admin_login():
             session["usuario"]=_usuario
             return redirect("/admin")
 
-            return redirect("/admin")
-        else:
-            print("NO ES ADMIN")
-            error = 'Invalid username or password'
-            return render_template('login.html', error=error)
-
     return render_template('/admin/login.html', admin=admin, mensaje="Error: credenciales no coinciden")
 
 @app.route('/admin/cerrar')
