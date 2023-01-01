@@ -8,19 +8,20 @@
 
             {% for result in results %}
             <div class="col-md-4">
-                ___________________________________________________
-                <div class="card">
+                <br>
+                <div class="card border-primary">
 
-                    <img class="card-img-top" src="https://indunor.cl/assets/img/logosues/logo_unap.png" width=10px height=350px alt="">
+                    <img class="card-img-top" src="images/logo_unap.png" width=40px alt="">
                     <div class="card-body">
                         <h2 class="card-title">{{result[3]}}</h2>
-                        <h4 class="card-title">AUTORES: {{result[4]}}</h4>
-                        <!--img class="card-img-top" src="https://www.researchgate.net/profile/Maria-Monreal/publication/315108532/figure/fig1/AS:472492935520261@1489662502634/Figura-2-Avatar-que-aparece-por-defecto-en-Facebook_Q640.jpg" alt=""--->
-                        <h4 class="card-title">PROFESOR GUIA: {{result[5]}}</h4>
-                        <!--img class="card-img-top" src="https://www.researchgate.net/profile/Maria-Monreal/publication/315108532/figure/fig1/AS:472492935520261@1489662502634/Figura-2-Avatar-que-aparece-por-defecto-en-Facebook_Q640.jpg" alt=""--->
-                        <h4 class="card-title">PUBLICACIÓN: {{result[6]}}</h4>
+
                         <a name="" id="" class="btn btn-primary" href="/files/{{ result[7] }}" role="button">Visualizar</a>
-                        <h1><br></h1>
+
+                        <form action="/details" method="post">
+                            <input value="{{ result[0] }}" type="hidden" name="txtID" id="txtID">
+                            <button type="submit" class="btn btn-info">Detalles</button>
+                        </form>
+                        
                     </div>
                 </div>
             </div>
@@ -28,11 +29,11 @@
 
             {% else %}
             <div class="alert alert-danger" role="alert">
-                <strong> ERROR: NO ENCONTRADO</strong>
+                <strong>{{mensaje}}</strong>
             </div>
             {% endif %}
         </div> 
 
     </div>
-
+<br>
 {% include 'site/foot.html' %}

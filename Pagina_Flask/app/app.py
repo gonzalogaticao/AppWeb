@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory
+from flask import Flask, render_template, request, redirect, session, send_from_directory
 from flaskext.mysql import MySQL
 from datetime import datetime
 
@@ -31,6 +31,12 @@ def pdf(pdf):
     print(os.path.join('Pagina_Flask/app/templates/files/'),pdf)
     return send_from_directory(os.path.join('templates/files'),pdf)
 
+@app.route('/images/<imagen>')
+def imagenes(imagen):
+    print(imagen)
+    print(os.path.join('Pagina_Flask/app/templates/images/'),imagen)
+    return send_from_directory(os.path.join('templates/images'),imagen)
+
 @app.route('/tesis')
 def tesis():
     conexion = mysql.connect()
@@ -40,6 +46,18 @@ def tesis():
     conexion.commit()
 
     return render_template('site/tesis.html', tesis=tesis)
+
+@app.route('/details', methods=['GET', 'POST'])
+def details():
+    _id=request.form['txtID']
+
+    conexion = mysql.connect()
+    cursor = conexion.cursor()
+    cursor.execute("SELECT * FROM `tesis` WHERE `ID_T`= %s" ,(_id))       
+    tesis=cursor.fetchall()
+    conexion.commit()
+
+    return render_template('site/details.html', tesis=tesis)
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
@@ -54,7 +72,7 @@ def search():
   cursor.close()
   conexion.close()
   
-  return render_template('site/search.html', query=query, results=results)
+  return render_template('site/search.html', query=query, results=results, mensaje="Error: '"+query+"' No Encontrado")
 
 @app.route('/admin/register')
 def register():
