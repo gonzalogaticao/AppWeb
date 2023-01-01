@@ -37,6 +37,18 @@ def imagenes(imagen):
     print(os.path.join('Pagina_Flask/app/templates/images/'),imagen)
     return send_from_directory(os.path.join('templates/images'),imagen)
 
+@app.route('/images/Docentes/<imagen>')
+def imagenes_docentes(imagen):
+    print(imagen)
+    print(os.path.join('Pagina_Flask/app/templates/images/Docentes/'),imagen)
+    return send_from_directory(os.path.join('templates/images/Docentes'),imagen)
+
+@app.route('/images/Egresados/<imagen>')
+def imagenes_egresados(imagen):
+    print(imagen)
+    print(os.path.join('Pagina_Flask/app/templates/images/Egresados/'),imagen)
+    return send_from_directory(os.path.join('templates/images/Egresados'),imagen)
+
 @app.route('/tesis')
 def tesis():
     conexion = mysql.connect()
@@ -154,12 +166,14 @@ def tesisSave():
     _profesor=request.form['txtProfesor']
     _anio=request.form['txtAnio']
     _pdf=request.files['pdfTesis']
-
     _titulo=request.form['txtTitulo']
     _facultad=request.form['txtFacultad']
     _tema=request.form['txtTema']
     _mail=request.form['txtMail']
     _contacto=request.form['txtContacto']
+
+    _fotoAutor=request.files['imgAutor']
+    _fotoDocente=request.files['imgDocente']
     print(_facultad)
 
     tiempo = datetime.now()
@@ -169,6 +183,16 @@ def tesisSave():
         nuevoNombre = horaActual+"_"+_pdf.filename
         filesPath = "Pagina_Flask/app/templates/files/"
         _pdf.save(filesPath+nuevoNombre)
+
+    if _fotoAutor.filename!="":
+        nombreFotoAutor = horaActual+"_"+_fotoAutor.filename
+        filesPath = "Pagina_Flask/app/templates/images/Egresados/"
+        _fotoAutor.save(filesPath+nombreFotoAutor)
+
+    if _fotoDocente.filename!="":
+        nombreFotoDocente = horaActual+"_"+_fotoDocente.filename
+        filesPath = "Pagina_Flask/app/templates/images/Docentes/"
+        _fotoDocente.save(filesPath+nombreFotoDocente)
 
 
     _username=session.get('usuario')
@@ -187,8 +211,8 @@ def tesisSave():
     conexion.close()
 
 
-    sql="INSERT INTO `tesis` (`ID_T`, `ID_M`, `ID_U`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`,`TITULO_OPTADO_T`,`FACULTAD_T`,`TEMA_T`,`MAIL_T`,`CONTACTO_T`) VALUES (NULL, %s, 1, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
-    datos=(id,_tesis,_autor,_profesor,_anio,nuevoNombre,_titulo,_facultad,_tema,_mail,_contacto)
+    sql="INSERT INTO `tesis` (`ID_T`, `ID_M`, `ID_U`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`,`TITULO_OPTADO_T`,`FACULTAD_T`,`TEMA_T`,`MAIL_T`,`CONTACTO_T`,`EGRESADO_T`,`DOCENTE_T`) VALUES (NULL, %s, 1, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+    datos=(id,_tesis,_autor,_profesor,_anio,nuevoNombre,_titulo,_facultad,_tema,_mail,_contacto,nombreFotoAutor,nombreFotoDocente)
     conexion = mysql.connect()      #Conexion.
     cursor=conexion.cursor()        #Se genera un cursor.
     cursor.execute(sql,datos)       #Cursor ejecuta el comando sql.
