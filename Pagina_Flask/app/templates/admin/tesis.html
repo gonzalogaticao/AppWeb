@@ -1,7 +1,7 @@
 {% include 'admin/header.html' %}
 
 <div class="container">
-    <br>
+
     <div class="row">
         <div class="col-md-4">
 
@@ -14,8 +14,13 @@
                     <form action="/admin/tesis/save" method="post" enctype="multipart/form-data">
 
                     <div class="form-group">
-                      <label for="txtTitulo">Titulo</label>  
-                      <input type="txt" class="form-control" name="txtTitulo" id="txtTitulo" placeholder="Ingrese titulo">
+                      <label for="txtTesis">Titulo de Tesis</label>  
+                      <input type="txt" class="form-control" name="txtTesis" id="txtTesis" placeholder="Ingrese titulo">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtAnio">Año</label>  
+                      <input type="txt" class="form-control" name="txtAnio" id="txtAnio"  placeholder="Año de publicacion">
                     </div>
 
                     <div class="form-group">
@@ -29,8 +34,28 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="txtAnio">Año</label>  
-                      <input type="txt" class="form-control" name="txtAnio" id="txtAnio"  placeholder="Año de publicacion">
+                      <label for="txtTitulo">Titulo Optado</label>  
+                      <input type="txt" class="form-control" name="txtTitulo" id="txtTitulo"  placeholder="Titulo">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtFacultad">Facultad</label>  
+                      <input type="txt" class="form-control" name="txtFacultad" id="txtFacultad"  placeholder="Facultad">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtTema">Area</label>  
+                      <input type="txt" class="form-control" name="txtTema" id="txtTema"  placeholder="Area">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtMail">Email</label>  
+                      <input type="txt" class="form-control" name="txtMail" id="txtMail"  placeholder="Email">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtContacto">Contacto Telefonico</label>  
+                      <input type="txt" class="form-control" name="txtContacto" id="txtContacto"  placeholder="Numero Telefonico">
                     </div>
 
                     <div class="form-group">

@@ -149,11 +149,18 @@ def tesisSave():
     if not 'login' in session:
         return render_template('/admin/login.html')
 
-    _tesis=request.form['txtTitulo']
+    _tesis=request.form['txtTesis']
     _autor=request.form['txtAutor']
     _profesor=request.form['txtProfesor']
     _anio=request.form['txtAnio']
     _pdf=request.files['pdfTesis']
+
+    _titulo=request.form['txtTitulo']
+    _facultad=request.form['txtFacultad']
+    _tema=request.form['txtTema']
+    _mail=request.form['txtMail']
+    _contacto=request.form['txtContacto']
+    print(_facultad)
 
     tiempo = datetime.now()
     horaActual=tiempo.strftime('%Y%H%M%S')
@@ -180,8 +187,8 @@ def tesisSave():
     conexion.close()
 
 
-    sql="INSERT INTO `tesis` (`ID_T`, `ID_M`, `ID_U`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`) VALUES (NULL, %s, 1, %s, %s, %s, %s, %s);"
-    datos=(id,_tesis,_autor,_profesor,_anio,nuevoNombre)
+    sql="INSERT INTO `tesis` (`ID_T`, `ID_M`, `ID_U`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`,`TITULO_OPTADO_T`,`FACULTAD_T`,`TEMA_T`,`MAIL_T`,`CONTACTO_T`) VALUES (NULL, %s, 1, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+    datos=(id,_tesis,_autor,_profesor,_anio,nuevoNombre,_titulo,_facultad,_tema,_mail,_contacto)
     conexion = mysql.connect()      #Conexion.
     cursor=conexion.cursor()        #Se genera un cursor.
     cursor.execute(sql,datos)       #Cursor ejecuta el comando sql.
