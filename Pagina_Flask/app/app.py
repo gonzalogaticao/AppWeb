@@ -141,7 +141,7 @@ def admin_login():
             session["usuario"]=_usuario
             return redirect("/admin")
 
-    return render_template('/admin/login.html', admin=admin, mensaje="Error: credenciales no coinciden")
+    return render_template('/admin/login.html', admin=admin, mensaje="Error: datos no coinciden")
 
 @app.route('/admin/cerrar')
 def cerrar_session():
