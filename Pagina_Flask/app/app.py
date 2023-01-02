@@ -13,7 +13,7 @@ mysql = MySQL()
 app.config['MYSQL_DATABASE_HOST'] = "localhost"
 app.config['MYSQL_DATABASE_USER'] = "root"
 app.config['MYSQL_DATABASE_PASSWORD'] = ""
-app.config['MYSQL_DATABASE_DB'] = "repositorio"
+app.config['MYSQL_DATABASE_DB'] = "repositorios"
 mysql.init_app(app)
 
 #Rutas
@@ -211,7 +211,7 @@ def tesisSave():
     conexion.close()
 
 
-    sql="INSERT INTO `tesis` (`ID_T`, `ID_M`, `ID_U`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`,`TITULO_OPTADO_T`,`FACULTAD_T`,`TEMA_T`,`MAIL_T`,`CONTACTO_T`,`EGRESADO_T`,`DOCENTE_T`) VALUES (NULL, %s, 1, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+    sql="INSERT INTO `tesis` (`ID_T`, `ID_M`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`,`TITULO_OPTADO_T`,`FACULTAD_T`,`TEMA_T`,`MAIL_T`,`CONTACTO_T`,`EGRESADO_T`,`DOCENTE_T`) VALUES (NULL, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
     datos=(id,_tesis,_autor,_profesor,_anio,nuevoNombre,_titulo,_facultad,_tema,_mail,_contacto,nombreFotoAutor,nombreFotoDocente)
     conexion = mysql.connect()      #Conexion.
     cursor=conexion.cursor()        #Se genera un cursor.
