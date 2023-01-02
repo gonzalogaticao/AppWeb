@@ -31,11 +31,11 @@ def pdf(pdf):
     print(os.path.join('Pagina_Flask/app/templates/files/'),pdf)
     return send_from_directory(os.path.join('templates/files'),pdf)
 
-@app.route('/images/<imagen>')
-def imagenes(imagen):
+@app.route('/images/Web/<imagen>')
+def imagenes_web(imagen):
     print(imagen)
-    print(os.path.join('Pagina_Flask/app/templates/images/'),imagen)
-    return send_from_directory(os.path.join('templates/images'),imagen)
+    print(os.path.join('Pagina_Flask/app/templates/images/Web/'),imagen)
+    return send_from_directory(os.path.join('templates/images/Web'),imagen)
 
 @app.route('/images/Docentes/<imagen>')
 def imagenes_docentes(imagen):
