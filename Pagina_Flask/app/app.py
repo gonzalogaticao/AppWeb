@@ -97,14 +97,30 @@ def admin_register_save():
     _password=request.form['txtPassword']
     _email=request.form['txtEmail']
 
-    sql="INSERT INTO `moderadores` (`ID_M`, `NOMBRE_M`, `CORREO_M`, `CONTRASENA_M`) VALUES (NULL,%s,%s,%s);"
-    datos=(_usuario,_email,_password)
-    conexion = mysql.connect()      #Conexion.
-    cursor=conexion.cursor()        #Se genera un cursor.
-    cursor.execute(sql,datos)       #Cursor ejecuta el comando sql.
-    conexion.commit()               #Se lleva a cabo.
+    conexion = mysql.connect()
+    cursor = conexion.cursor()
+    cursor.execute("SELECT * FROM `moderadores` WHERE CORREO_M=%s",(_email))
+    admin=cursor.fetchone()
 
-    return redirect('/admin/login')
+    if admin is None:
+        sql="INSERT INTO `moderadores` (`ID_M`, `NOMBRE_M`, `CORREO_M`, `CONTRASENA_M`) VALUES (NULL,%s,%s,%s);"
+        datos=(_usuario,_email,_password)
+        conexion = mysql.connect()      #Conexion.
+        cursor=conexion.cursor()        #Se genera un cursor.
+        cursor.execute(sql,datos)       #Cursor ejecuta el comando sql.
+        conexion.commit()               #Se lleva a cabo.
+        return redirect('/admin/login')
+
+    return redirect('/admin/register')
+
+    #sql="INSERT INTO `moderadores` (`ID_M`, `NOMBRE_M`, `CORREO_M`, `CONTRASENA_M`) VALUES (NULL,%s,%s,%s);"
+    #datos=(_usuario,_email,_password)
+    #conexion = mysql.connect()      #Conexion.
+    #cursor=conexion.cursor()        #Se genera un cursor.
+    #cursor.execute(sql,datos)       #Cursor ejecuta el comando sql.
+    #conexion.commit()               #Se lleva a cabo.
+
+    #return redirect('/admin/login')
 
 @app.route('/admin')
 def admin():
