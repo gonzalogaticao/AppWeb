@@ -93,8 +93,9 @@
                         <th>AUTOR</th>
                         <th>PROFESOR GUIA</th>
                         <th>AÑO</th>
+                        <th>ESTADO</th>
                         <th>ARCHIVO</th>
-                        <th>ACCION</th>
+                        <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -104,6 +105,8 @@
                         <td>{{ tesis[3] }}</td>
                         <td>{{ tesis[4] }}</td>
                         <td>{{ tesis[5] }}</td>
+                        <td>{{ tesis[14] }}</td>
+
                         <td>
 
                           <a name="" id="" class="btn btn-primary" href="/files/{{ tesis[6] }}" role="button">Abrir</a>
@@ -111,13 +114,27 @@
                         </td>
 
                         <td>
+                          <form action="/admin/tesis/active" method="post">
+                            <input value="{{ tesis[0] }}" type="hidden" name="txtID" id="txtID">
+                                  <button type="submit" class="btn btn-warning">Activar</button>
+                            </form>
+
+                            <form action="/admin/tesis/desactive" method="post">
+                              <input value="{{ tesis[0] }}" type="hidden" name="txtID" id="txtID">
+                                    <button type="submit" class="btn btn-danger">Desactivar</button>
+                              </form>
+
+                        </td>
+
+                        <td>
 
                           <form action="/admin/tesis/delete" method="post">
                           <input value="{{ tesis[0] }}" type="hidden" name="txtID" id="txtID">
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                          </form>
+                                <button type="submit" class="btn btn-dark">Eliminar</button>
+                            </form>
 
                         </td>
+
                     </tr>
                     {% endfor %}
                 </tbody>

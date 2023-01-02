@@ -51,7 +51,7 @@ def imagenes_egresados(imagen):
 def tesis():
     conexion = mysql.connect()
     cursor = conexion.cursor()
-    cursor.execute("SELECT * FROM `tesis`")
+    cursor.execute("SELECT * FROM `tesis` WHERE `ACTIVE_T`=1")
     tesis=cursor.fetchall()
     conexion.commit()
 
@@ -63,7 +63,7 @@ def details():
 
     conexion = mysql.connect()
     cursor = conexion.cursor()
-    cursor.execute("SELECT * FROM `tesis` WHERE `ID_T`= %s" ,(_id))       
+    cursor.execute("SELECT * FROM `tesis` WHERE `ACTIVE_T`=1 and`ID_T`= %s" ,(_id))       
     tesis=cursor.fetchall()
     conexion.commit()
 
@@ -77,7 +77,7 @@ def search():
   
   conexion = mysql.connect()
   cursor = conexion.cursor()
-  cursor.execute("SELECT * FROM `tesis` WHERE `TITULO_T` LIKE %s" ,('%' + query + '%'))
+  cursor.execute("SELECT * FROM `tesis` WHERE `ACTIVE_T`=1 and `TITULO_T` LIKE %s" ,('%' + query + '%'))
   results = cursor.fetchall()         
   cursor.close()
   conexion.close()
@@ -247,6 +247,50 @@ def tesisDelete():
     conexion = mysql.connect()
     cursor = conexion.cursor()
     cursor.execute("DELETE FROM `tesis` WHERE ID_T=%s", _id)
+    tesis=cursor.fetchall()
+    conexion.commit()
+
+    return redirect('/admin/tesis')
+
+@app.route('/admin/tesis/desactive', methods=['POST'])
+def tesisDesactivate():
+
+    if not 'login' in session:
+        return render_template('/admin/login.html')
+
+    _id=request.form['txtID']
+
+    conexion = mysql.connect()
+    cursor = conexion.cursor()
+    cursor.execute("SELECT archivo_t FROM `tesis` WHERE ID_T=%s", _id)
+    tesis=cursor.fetchall()
+    conexion.commit()
+
+    conexion = mysql.connect()
+    cursor = conexion.cursor()
+    cursor.execute("UPDATE `tesis` SET ACTIVE_T=0 WHERE ID_T=%s", _id)
+    tesis=cursor.fetchall()
+    conexion.commit()
+
+    return redirect('/admin/tesis')
+
+@app.route('/admin/tesis/active', methods=['POST'])
+def tesisActivate():
+
+    if not 'login' in session:
+        return render_template('/admin/login.html')
+
+    _id=request.form['txtID']
+
+    conexion = mysql.connect()
+    cursor = conexion.cursor()
+    cursor.execute("SELECT archivo_t FROM `tesis` WHERE ID_T=%s", _id)
+    tesis=cursor.fetchall()
+    conexion.commit()
+
+    conexion = mysql.connect()
+    cursor = conexion.cursor()
+    cursor.execute("UPDATE `tesis` SET ACTIVE_T=1 WHERE ID_T=%s", _id)
     tesis=cursor.fetchall()
     conexion.commit()
 
