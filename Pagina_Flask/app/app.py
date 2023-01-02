@@ -2,8 +2,6 @@ from flask import Flask
 from flask import Flask, render_template, request, redirect, session, send_from_directory,flash
 from flaskext.mysql import MySQL
 from datetime import datetime
-
-from werkzeug.utils import secure_filename
 import os
 
 app = Flask(__name__)  #Inicializa aplicacion.
@@ -114,15 +112,6 @@ def admin_register_save():
         flash('Username is already taken.')
 
     return render_template('/admin/register.html', mensaje="Error: '"+_email+"' Ya Registrado")
-
-    #sql="INSERT INTO `moderadores` (`ID_M`, `NOMBRE_M`, `CORREO_M`, `CONTRASENA_M`) VALUES (NULL,%s,%s,%s);"
-    #datos=(_usuario,_email,_password)
-    #conexion = mysql.connect()      #Conexion.
-    #cursor=conexion.cursor()        #Se genera un cursor.
-    #cursor.execute(sql,datos)       #Cursor ejecuta el comando sql.
-    #conexion.commit()               #Se lleva a cabo.
-
-    #return redirect('/admin/login')
 
 @app.route('/admin')
 def admin():
