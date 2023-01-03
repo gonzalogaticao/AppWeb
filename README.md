@@ -91,6 +91,6 @@ Aplicacion web para servir de repositorio de tesis.
 4. Vaya a crear una base de datos y nómbrela `repositorios`.
 5. Importa el archivo SQL `AppBD.sql`.
 
-- Licensia
+### Licensia
 
         MIT License
