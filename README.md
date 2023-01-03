@@ -36,8 +36,12 @@ Aplicacion web para servir de repositorio de tesis.
 - Instalar Flask en el proyecto:
 
       pip install flask
+      
+- Instalar acceso a bases de datos MySQL
 
-- Verificar que flask este instalado:
+      pip install flask-mysql
+
+- Verificar instalaciones:
 
       pip list
 
