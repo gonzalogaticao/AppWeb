@@ -4,7 +4,7 @@
 Aplicacion web para servir de repositorio de tesis.
 
 ## Estado el proyecto
-    En proceso - Activo
+    Version 1.0 - Pausado
 
 ## Instalación desde cero
 
