@@ -61,6 +61,10 @@ Aplicacion web para servir de repositorio de tesis.
 
 - Para cerrar el servidor se debe ingresar `ctrl+c` en el terminal.
 
+### AppWeb
+
+- Ahora puedes clonar la carpeta `Pagina_Flask/app`
+
 ### Wamp
  - Todas las versiones de Wamp para Windows están disponibles en [wampserver](https://www.wampserver.com/en/)
  - Descargue el Wamp según la arquitectura de su sistema y obtenga la `versión 3.2.6`
