@@ -61,6 +61,36 @@ Aplicacion web para servir de repositorio de tesis.
 
 - Para cerrar el servidor se debe ingresar `ctrl+c` en el terminal.
 
+### Wamp
+ - Todas las versiones de Wamp para Windows están disponibles en [wampserver](https://www.wampserver.com/en/)
+ - Descargue el Wamp según la arquitectura de su sistema y obtenga la `versión 3.2.6`
+ 
+##### My SQL
+- En el proceso de instalación, la instalación de `MySQL 5.7` aparecerá en la sección `select components`.
+- Por defecto debería aparecer seleccionado, en caso contrario selecciónelo.
+
+##### Cambiar el mecanismo de almacenamiento de MYISAM a INNODB
+1. Inicia Wampserver (una vez iniciado su icono aparecerá en iconos ocultos).
+2. 2. Vaya a `MySQL` y seleccione `my.ini`.
+3. 3. Edita default-storage. Debe quedar de la siguiente manera:
+
+		;default-storage-engine=MYISAM.
+		default-storage-engine=InnoDB.
+		
+4. Reinicie Wampserver
+
+
+### PHP My Admin
+1. Inicie Wampserver (una vez iniciado su icono aparecerá en iconos ocultos).
+2. Seleccione `phpMyAdmin`.
+3. Acceda usando la siguiente cuenta por defecto.
+
+		Nombre de usuario: root
+		Contraseña: 
+		
+4. Vaya a crear una base de datos y nómbrela `repositorios`.
+5. Importa el archivo SQL `AppBD.sql`.
+
 - Licensia
 
         MIT License
